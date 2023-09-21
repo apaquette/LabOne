@@ -4,13 +4,24 @@
 #Equivalent(?) to a project file in VStudio -- only better!
 #See http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/ for info.
 
+CC = g++
+CFLAGS= -std=c++11 -pthread -Wall
+MUTFILES = mutualEx.cpp Semaphore.cpp Semaphore.h
+DFLAGS = -00 -g
 
-CC=g++
-CFLAGS= -std=c++11 -pthread
+#This rule says that each .o file depends on a .cpp file of the same name
+%.o: %.cpp
+	$(CC) -c -o $@ $< $(CFLAGS)
 
-SIMPLE: helloThreads.cpp Semaphore.cpp
+SIMPLE:	helloThreads.cpp Semaphore.cpp
 	g++ -std=c++11 -pthread helloThreads.cpp Semaphore.cpp
 
+MUTUAL:	$(MUTFILES)
+	$(CC) $(CFLAGS) $(MUTFILES) -o muty
+
+DEBUG:	$MUTFILES
+	$(CC) $(CFLAGS) $(DFLAGS) mutualEx.cpp Semaphore.cpp -o muty
 
 CLEAN:
 	rm *.o
+	rm *~

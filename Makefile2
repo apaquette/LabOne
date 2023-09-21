@@ -8,9 +8,7 @@
 CC=g++
 CFLAGS= -std=c++11 -pthread
 
-#This rule says that each .o file depends on a .cpp file of the same name
-%.o: %.cpp
-	$(CC) -c -o $@ $< $(CFLAGS)
+
 
 ALL: helloThreads.o
 	$(CC) -o helloThreads helloThreads.o $(CFLAGS)
