@@ -10,12 +10,15 @@ void taskOne(std::shared_ptr<Semaphore> theSemaphore, int delay){
   std::cout << "must ";
   std::cout << "print ";
   std::cout << "first"<<std::endl;
+  theSemaphore->Signal();
   //tell taskTwo to start now
 }
 
 /*! displays a message second*/
 void taskTwo(std::shared_ptr<Semaphore> theSemaphore){
   //wait here until taskOne finishes...
+  theSemaphore->Wait();
+
   std::cout <<"This ";
   std::cout << "will ";
   sleep(5);
