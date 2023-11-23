@@ -3,7 +3,16 @@
 #include <thread>
 #include <unistd.h>
 
-/*! displays a message first*/
+/*! \file helloThreads.cpp
+    \brief main file for demonstrating semaphores
+*/
+
+/*! 
+  \fn void taskOne(std::shared_ptr<Semaphore> theSemaphore, int delay)
+  \brief Displays a message first
+  \param theSemaphore The Semaphore used to signal when the task is complete
+  \param delay Time for task to sleep in seconds
+*/
 void taskOne(std::shared_ptr<Semaphore> theSemaphore, int delay){
   sleep(delay);
   std::cout <<"I ";
@@ -13,7 +22,11 @@ void taskOne(std::shared_ptr<Semaphore> theSemaphore, int delay){
   theSemaphore->Signal(); //tell taskTwo to start now
 }
 
-/*! displays a message second*/
+/*! 
+  \fn void taskTwo(std::shared_ptr<Semaphore> theSemaphore)
+  \brief Displays a message second
+  \param theSemaphore The Semaphore used to wait for previous thread to complete
+*/
 void taskTwo(std::shared_ptr<Semaphore> theSemaphore){
   theSemaphore->Wait(); //wait here until taskOne finishes...
 

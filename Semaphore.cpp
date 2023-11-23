@@ -8,7 +8,10 @@
 
 
 
-
+/*!
+      \fn void Semaphore::Wait()
+      \brief Wait on mutex to unlock
+*/
 void Semaphore::Wait()
 {
       std::unique_lock< std::mutex > lock(m_mutex);
@@ -16,6 +19,12 @@ void Semaphore::Wait()
       --m_uiCount;
 }
 
+/*!
+      \fn bool Semaphore::Wait(const std::chrono::duration<R,P>& crRelTime)
+      \brief Wait on mutex to unlock
+      \param crRelTime Time for how long to wait
+      \return Boolean indicating if mutex unlocked
+*/
 template< typename R,typename P >
 bool Semaphore::Wait(const std::chrono::duration<R,P>& crRelTime)
 {
@@ -27,6 +36,10 @@ bool Semaphore::Wait(const std::chrono::duration<R,P>& crRelTime)
       return true;
 }
 
+/*!
+      \fn void Signal()
+      \brief Unlock the mutex
+*/
 void Semaphore::Signal()
 {
       std::unique_lock< std::mutex > lock(m_mutex);
