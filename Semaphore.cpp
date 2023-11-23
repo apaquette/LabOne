@@ -37,7 +37,7 @@ bool Semaphore::Wait(const std::chrono::duration<R,P>& crRelTime)
 }
 
 /*!
-      \fn void Signal()
+      \fn void Semaphore::Signal()
       \brief Unlock the mutex
 */
 void Semaphore::Signal()

@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "hlmstw",
   1: "s",
   2: "h",
-  3: "mtw",
+  3: "mstw",
   4: "l"
 };
 
